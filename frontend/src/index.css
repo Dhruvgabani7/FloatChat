@@ -9,6 +9,11 @@
   --cyan: #4dd6ff;
   --green: #66ffa6;
   --accent: #ff9f43;
+  
+  /* Animation durations */
+  --anim-fast: 0.2s;
+  --anim-medium: 0.5s;
+  --anim-slow: 1s;
 }
 
 /* Theme palettes: apply any .theme-* class to <body> or .app-root */
@@ -49,6 +54,281 @@
   --cyan: #22c55e; /* green */
   --green: #86efac; /* mint green */
   --accent: #a3e635; /* lime */
+}
+
+/* Homepage Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes waveAnimation {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-25px) translateY(5px); }
+  50% { transform: translateX(0) translateY(10px); }
+  75% { transform: translateX(25px) translateY(5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Apply animations to homepage elements */
+.home-hero .hero-content {
+  animation: fadeIn var(--anim-medium) ease-out;
+}
+
+.hero-title, .hero-sub, .hero-cta {
+  opacity: 0;
+  animation: fadeIn var(--anim-medium) ease-out forwards;
+}
+
+.hero-title {
+  animation-delay: 0.2s;
+}
+
+.hero-sub {
+  animation-delay: 0.4s;
+}
+
+.hero-cta {
+  animation-delay: 0.6s;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--bg-deep) 0%, var(--bg-deeper) 100%);
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-bg::before, .hero-bg::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--aqua);
+  opacity: 0.05;
+  filter: blur(60px);
+}
+
+.hero-bg::before {
+  top: -100px;
+  left: 10%;
+  animation: floatBlob 15s ease-in-out infinite alternate;
+}
+
+.hero-bg::after {
+  bottom: -150px;
+  right: 15%;
+  width: 250px;
+  height: 250px;
+  background: var(--cyan);
+  animation: floatBlob 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes floatBlob {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 25px) scale(1.1); }
+  100% { transform: translate(10px, 40px) scale(0.9); }
+}
+
+.hero-anim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hero-anim .anim-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.1;
+  animation: waveAnimation var(--anim-slow) ease-in-out infinite;
+}
+
+.hero-anim .l1 {
+  background: radial-gradient(circle at 30% 50%, var(--cyan) 0%, transparent 60%);
+  animation-duration: 8s;
+}
+
+.hero-anim .l2 {
+  background: radial-gradient(circle at 70% 60%, var(--aqua) 0%, transparent 60%);
+  animation-duration: 10s;
+  animation-delay: 0.5s;
+}
+
+.hero-anim .l3 {
+  background: radial-gradient(circle at 50% 30%, var(--green) 0%, transparent 60%);
+  animation-duration: 12s;
+  animation-delay: 1s;
+}
+
+/* Bubbles */
+.hero-bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(1px);
+  box-shadow: 0 0 8px rgba(77, 214, 255, 0.3);
+}
+
+/* Bubble colors */
+.bubble.b1, .bubble.b7 { background: var(--cyan); }
+.bubble.b2, .bubble.b8 { background: var(--aqua); }
+.bubble.b3, .bubble.b9 { background: rgba(41, 211, 194, 0.8); } /* lighter aqua */
+.bubble.b4, .bubble.b10 { background: rgba(77, 214, 255, 0.8); } /* lighter cyan */
+.bubble.b5, .bubble.b11 { background: linear-gradient(135deg, var(--cyan) 0%, var(--aqua) 100%); }
+.bubble.b6, .bubble.b12 { background: linear-gradient(135deg, var(--aqua) 0%, var(--cyan) 100%); }
+
+/* Bubble sizes */
+.bubble.b1 { width: 15px; height: 15px; }
+.bubble.b2 { width: 25px; height: 25px; }
+.bubble.b3 { width: 40px; height: 40px; }
+.bubble.b4 { width: 60px; height: 60px; }
+.bubble.b5 { width: 80px; height: 80px; }
+.bubble.b6 { width: 30px; height: 30px; }
+.bubble.b7 { width: 50px; height: 50px; }
+.bubble.b8 { width: 70px; height: 70px; }
+.bubble.b9 { width: 20px; height: 20px; }
+.bubble.b10 { width: 35px; height: 35px; }
+.bubble.b11 { width: 45px; height: 45px; }
+.bubble.b12 { width: 55px; height: 55px; }
+
+/* Bubble positions and animations */
+.bubble.b1 { bottom: 10%; left: 10%; animation: bubbleRise 15s ease-in infinite; }
+.bubble.b2 { bottom: 5%; left: 20%; animation: bubbleRise 12s ease-in infinite; animation-delay: 1s; }
+.bubble.b3 { bottom: 8%; left: 35%; animation: bubbleRise 18s ease-in infinite; animation-delay: 2s; }
+.bubble.b4 { bottom: 15%; left: 50%; animation: bubbleRise 20s ease-in infinite; animation-delay: 0s; }
+.bubble.b5 { bottom: 5%; left: 65%; animation: bubbleRise 22s ease-in infinite; animation-delay: 3s; }
+.bubble.b6 { bottom: 12%; left: 80%; animation: bubbleRise 16s ease-in infinite; animation-delay: 2s; }
+.bubble.b7 { bottom: 20%; left: 15%; animation: bubbleRise 19s ease-in infinite; animation-delay: 4s; }
+.bubble.b8 { bottom: 25%; left: 40%; animation: bubbleRise 21s ease-in infinite; animation-delay: 1s; }
+.bubble.b9 { bottom: 15%; left: 70%; animation: bubbleRise 14s ease-in infinite; animation-delay: 3s; }
+.bubble.b10 { bottom: 30%; left: 25%; animation: bubbleRise 17s ease-in infinite; animation-delay: 2s; }
+.bubble.b11 { bottom: 35%; left: 60%; animation: bubbleRise 23s ease-in infinite; animation-delay: 0s; }
+.bubble.b12 { bottom: 40%; left: 85%; animation: bubbleRise 25s ease-in infinite; animation-delay: 1s; }
+
+@keyframes bubbleRise {
+  0% { 
+    transform: translateY(0) translateX(0) scale(1); 
+    opacity: 0.15;
+  }
+  50% { 
+    transform: translateY(-30vh) translateX(-15px) scale(1.2); 
+    opacity: 0.2;
+  }
+  100% { 
+    transform: translateY(-60vh) translateX(15px) scale(0.8); 
+    opacity: 0;
+  }
+}
+
+/* Floating particles */
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text);
+  opacity: 0.2;
+}
+
+.particle:nth-child(1) { top: 20%; left: 10%; animation: floatParticle 20s linear infinite; }
+.particle:nth-child(2) { top: 30%; left: 30%; animation: floatParticle 15s linear infinite; animation-delay: 2s; }
+.particle:nth-child(3) { top: 70%; left: 60%; animation: floatParticle 18s linear infinite; animation-delay: 1s; }
+.particle:nth-child(4) { top: 40%; left: 80%; animation: floatParticle 25s linear infinite; animation-delay: 0.5s; }
+.particle:nth-child(5) { top: 60%; left: 20%; animation: floatParticle 22s linear infinite; animation-delay: 3s; }
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) rotate(0); opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0.2; }
+}
+
+.card.hover-float, .feature-card.hover-float {
+  transition: transform var(--anim-fast) ease-out, box-shadow var(--anim-fast) ease-out;
+}
+
+.card.hover-float:hover, .feature-card.hover-float:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.nav-cta, .hero-cta {
+  transition: transform var(--anim-fast), background-color var(--anim-fast);
+}
+
+.nav-cta:hover, .hero-cta:hover {
+  transform: scale(1.05);
+}
+
+.logo-wave {
+  display: inline-block;
+  animation: waveAnimation 3s ease-in-out infinite;
+}
+
+.section-title {
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  animation: expandWidth 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 80px; }
 }
 
 .theme-slate {
@@ -251,14 +531,16 @@ body {
 /* Marketing Homepage UI */
 /* ===================== */
 .home-root { background: #f5f9fc; color: #0e2b3e; min-height: 100vh; }
-.home-nav { position: sticky; top: 0; background: #0f2536; color: #eaf8ff; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
-.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; }
-.logo { display: flex; align-items: center; gap: 8px; font-weight: 800; letter-spacing: .3px; }
-.logo-wave { color: var(--cyan); font-size: 24px; }
+.home-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15, 37, 54, 0.85); color: #eaf8ff; box-shadow: 0 8px 24px rgba(0,0,0,0.25); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(77, 214, 255, 0.1); }
+.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 800; letter-spacing: .3px; text-shadow: 0 0 10px rgba(77, 214, 255, 0.5); }
+.logo-wave { color: var(--cyan); font-size: 24px; filter: drop-shadow(0 0 5px var(--cyan)); }
 .logo-text { color: var(--text); font-size: 22px; line-height: 1; }
-.nav-center { display: flex; gap: 16px; }
-.nav-link { color: #cfe3ef; text-decoration: none; font-weight: 600; }
+.nav-center { display: flex; gap: 32px; }
+.nav-link { color: #cfe3ef; text-decoration: none; font-weight: 600; transition: all 0.3s; position: relative; padding: 6px 0; }
 .nav-link:hover { color: #fff; }
+.nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--cyan); transition: width 0.3s; }
+.nav-link:hover::after { width: 100%; }
 
 /* Subtle homepage animations */
 @keyframes fadeUp {
@@ -293,7 +575,7 @@ body {
   linear-gradient(180deg, #0b1e2d 0%, #081524 100%);
   filter: blur(0px);
 }
-.hero-content { position: relative; max-width: 1000px; margin: 0 auto; text-align: center; padding: 88px 20px; color: #eaf8ff; }
+.hero-content { position: relative; max-width: 1000px; margin: 0 auto; text-align: center; padding: 140px 20px; color: #eaf8ff; }
 .hero-title { font-size: 52px; line-height: 1.08; margin: 0 0 18px; }
 .hero-sub { font-size: 18px; color: #cfe3ef; max-width: 720px; margin: 0 auto 22px; }
 .hero-cta { background: linear-gradient(180deg, var(--cyan), var(--aqua)); color: #042437; border: none; padding: 12px 18px; border-radius: 999px; font-weight: 900; box-shadow: 0 12px 24px rgba(0,0,0,0.35); }

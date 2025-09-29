@@ -26,17 +26,38 @@ export default function HomePage({ onLaunch }) {
       {/* Hero */}
       <header className="home-hero">
         <div className="hero-bg" />
+        <div className="hero-bubbles">
+          <div className="bubble b1" />
+          <div className="bubble b2" />
+          <div className="bubble b3" />
+          <div className="bubble b4" />
+          <div className="bubble b5" />
+          <div className="bubble b6" />
+          <div className="bubble b7" />
+          <div className="bubble b8" />
+          <div className="bubble b9" />
+          <div className="bubble b10" />
+          <div className="bubble b11" />
+          <div className="bubble b12" />
+        </div>
         <div className="hero-anim">
           <div className="anim-layer l1" />
           <div className="anim-layer l2" />
           <div className="anim-layer l3" />
+        </div>
+        <div className="hero-particles">
+          <div className="particle" />
+          <div className="particle" />
+          <div className="particle" />
+          <div className="particle" />
+          <div className="particle" />
         </div>
         <div className="hero-content animate-fade">
           <h1 className="hero-title">Ask Questions. Get Ocean Insights. Instantly.</h1>
           <p className="hero-sub">
             FloatChat is an AI-powered co-pilot that makes exploring complex ARGO ocean data as simple as having a conversation.
           </p>
-          <button className="hero-cta" onClick={() => onLaunch && onLaunch()}>Start Exploring Now →</button>
+          <button className="hero-cta" onClick={onLaunch}>Start Working →</button>
         </div>
       </header>
 
