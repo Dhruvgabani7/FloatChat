@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bgVis" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b2a3b" />
+      <stop offset="1" stop-color="#103d57" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bgVis)"/>
+  <path d="M0 330 C160 300 280 380 440 350 C600 320 720 380 800 340 L800 450 L0 450 Z" fill="#4dd6ff" fill-opacity="0.18"/>
+  <path d="M0 360 C190 330 320 410 500 380 C640 360 720 400 800 370 L800 450 L0 450 Z" fill="#29d3c2" fill-opacity="0.18"/>
+
+  <!-- Axes -->
+  <line x1="120" y1="360" x2="680" y2="360" stroke="#cde7f2" stroke-width="3" opacity="0.8"/>
+  <line x1="120" y1="120" x2="120" y2="360" stroke="#cde7f2" stroke-width="3" opacity="0.8"/>
+
+  <!-- Chart line -->
+  <polyline points="120,320 220,300 320,280 420,260 520,240 620,220 680,210" fill="none" stroke="#4dd6ff" stroke-width="6"/>
+  <circle cx="520" cy="240" r="8" fill="#ff9f43"/>
+  <text x="536" y="232" fill="#ff9f43" font-size="18" font-family="Segoe UI, Arial">Anomaly</text>
+</svg>
